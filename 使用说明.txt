@@ -1,0 +1,44 @@
+========================================
+ 理赔后医护关怀 —— 快速使用说明
+========================================
+
+【一键启动】
+双击「启动.bat」即可。
+  - 首次运行会自动安装依赖（需联网，约几分钟）。
+  - 启动后浏览器自动打开 http://localhost:8501 。
+
+【前置条件】
+  - 已安装 Python 3.10 或更高版本（安装时勾选 "Add python.exe to PATH"）。
+  - 首次运行需要联网（安装依赖）。
+
+【使用 3 步】
+  1. 上传病历图片（可多选 / 拖拽，jpg/png 等）
+  2. 点「开始分析」
+  3. 查看四个页签：结构化结果 / 就医痛点 / 温度指引 / 品质画像
+
+【切换下一个病人】
+  点「清空上传」按钮，即可传下一份病历。
+
+【配置 API key】
+  程序自带一个演示 key（在 .env 文件里，开箱即用）。
+  若想换成你自己的 key 或换模型，编辑 .env：
+      ANTHROPIC_API_KEY=你的key
+      ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic
+      ANTHROPIC_MODEL=deepseek-chat
+  换原生 Claude：把 ANTHROPIC_MODEL 改成 claude-sonnet-5-5，并删掉 ANTHROPIC_BASE_URL 行。
+
+【详细说明】
+  见同目录「web_ins.txt」。
+
+【合规提醒】
+  本工具处理医疗数据，仅在授权范围内使用；生成内容为 AI 产出，
+  仅供参考、不能替代医生意见，对外展示前请二次脱敏。
+
+【常见问题】
+  Q: 双击启动.bat 没反应 / 报 Python 找不到？
+     → 未装 Python 或没勾选 "Add to PATH"。装 Python 3.10+ 后重试。
+  Q: 一直卡在安装依赖？
+     → 网络慢，耐心等；或手动执行：pip install -r requirements.txt
+  Q: 提示未检测到 API key？
+     → 检查 .env 文件是否存在、key 是否正确。
+========================================
