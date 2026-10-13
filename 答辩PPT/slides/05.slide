@@ -1,0 +1,43 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', background: '#FFFFFF', flexDirection: 'column', padding: '40px 70px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 32 }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A365D' }}>三层抽取技术路线</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 14 }}>半结构化字段规则优先，语义字段 LLM</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 28, flex: 1 }}>
+      {/* 左：三层说明 */}
+      <Box style={{ flex: 0.9, flexDirection: 'column', gap: 20, justifyContent: 'center' }}>
+        {[
+          { t: 'OCR 层', d: 'RapidOCR 本地推理，病历图片 → 文本，兼容票据/表格/印章版式', c: '#2B6CB0' },
+          { t: 'LLM 结构化层', d: 'DeepSeek 抽取 schema 约束 JSON，temperature=0 确定性抽取', c: '#2B6CB0' },
+          { t: '规则兜底层', d: '费用求和、日期、医保分类等确定性字段，规则优先、LLM 补缺', c: '#38B2AC' },
+        ].map((item, idx) => (
+          <Box key={idx} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+            <Box style={{ width: 8, height: 8, borderRadius: '50%', background: item.c, marginTop: 10, marginRight: 16 }} />
+            <Box>
+              <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A365D', marginBottom: 6 }}>{item.t}</Text>
+              <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.6 }}>{item.d}</Text>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+
+      {/* 右：架构决策 */}
+      <Box style={{ flex: 1.1, borderRadius: 16, background: 'linear-gradient(135deg, #1A365D 0%, #2B6CB0 100%)', padding: 36, flexDirection: 'column', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#7FD1CD', marginBottom: 20 }}>实测驱动的架构决策</Text>
+        <Text style={{ fontSize: 20, color: '#FFFFFF', lineHeight: 1.7, marginBottom: 24 }}>
+          费用清单是逐行明细、无总额行，LLM 无法对 262 行明细求和——这是从 70 案实测中得出的结论。
+        </Text>
+        <Box style={{ padding: '16px 20px', borderRadius: 10, background: 'rgba(255,255,255,0.1)' }}>
+          <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>→ 半结构化字段用规则，语义字段用 LLM</Text>
+        </Box>
+      </Box>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 24 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>05 / 12</Text>
+    </Box>
+  </Box>
+</Slide>
