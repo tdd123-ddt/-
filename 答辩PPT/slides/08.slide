@@ -1,0 +1,50 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', background: '#FFFFFF', flexDirection: 'column', padding: '40px 70px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 32 }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A365D' }}>温度指引盲评</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 14 }}>3 病种 · 全部 ≥ 4/5</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 28, flex: 1 }}>
+      {/* 左：指引示意 */}
+      <Box style={{ flex: 1, borderRadius: 16, background: '#EBF8FF', padding: 32, flexDirection: 'column', justifyContent: 'center', border: '1px solid #BEE3F8' }}>
+        <Text style={{ fontSize: 18, color: '#2B6CB0', fontWeight: 'bold', marginBottom: 16 }}>一份真实的温度指引（节选）</Text>
+        <Text style={{ fontSize: 18, color: '#2C5282', lineHeight: 1.8, fontStyle: 'italic' }}>
+          "贾阿姨您好，这次因为右肩膀的问题住院手术，前后 4 天，您辛苦了……"
+        </Text>
+        <Box style={{ marginTop: 20, padding: '14px 18px', borderRadius: 10, background: '#FFFFFF' }}>
+          <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6 }}>
+            锚定真实数字：住院 4 天 · 总费用 43603.13 元 · 肩袖破裂修补术 · 术后 2 周复查
+          </Text>
+        </Box>
+      </Box>
+
+      {/* 右：盲评数据 */}
+      <Box style={{ flex: 1, flexDirection: 'column', gap: 20, justifyContent: 'center' }}>
+        {[
+          { d: '呼吸道感染 + 甲流', s: '4.58' },
+          { d: '多囊卵巢综合征', s: '4.92' },
+          { d: '乳房恶性肿瘤', s: '4.33' },
+        ].map((item, idx) => (
+          <Box key={idx} style={{ flexDirection: 'row', alignItems: 'center', padding: '20px 24px', borderRadius: 12, background: '#F7FAFC', border: '1px solid #E2E8F0' }}>
+            <Box style={{ flex: 1 }}>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A365D' }}>{item.d}</Text>
+            </Box>
+            <Text style={{ fontSize: 36, fontWeight: 'bold', color: '#2B6CB0' }}>{item.s}</Text>
+            <Text style={{ fontSize: 16, color: '#718096', marginLeft: 8 }}>/ 5</Text>
+          </Box>
+        ))}
+        <Box style={{ padding: '16px 20px', borderRadius: 12, background: '#E6FFFA', border: '1px solid #B2F5EA' }}>
+          <Text style={{ fontSize: 17, color: '#2C7A7B', lineHeight: 1.6 }}>
+            反模板自检：个性化分数 1.0 —— 温度建立在真实数据上，而非通用科普拼接。
+          </Text>
+        </Box>
+      </Box>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 24 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>08 / 12</Text>
+    </Box>
+  </Box>
+</Slide>
