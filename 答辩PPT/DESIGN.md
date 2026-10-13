@@ -65,4 +65,5 @@
 | 09 | 09_profile.slide | content | supporting | 非对称双栏 | L2 画像维度SVG | 180 | 30% | 主色45% | 65:35非对称 |
 | 10 | 10_section3.slide | section | transition | 居中金句+巨型数字 | L1 section3_bg.png | 30 | 45% | 主色60% | 章节大字+小标 |
 | 11 | 11_loop.slide | content | supporting | 非对称双栏 | L2 触达闭环SVG | 200 | 28% | 主色45% | 60:40非对称 |
-| 12 | 12_ending.slide | ending | hero | 居中金句 | 收束金句 | 40 | 45% | 强调色15% | 金句+落款 |
+| 12 | 12_care.slide | content | supporting | 非对称双栏 | L2 五项能力+数字锚点 | 220 | 28% | 主色45%+强调15% | 左列表右锚点 |
+| 13 | 13_ending.slide | ending | hero | 居中金句 | 收束金句 | 40 | 45% | 强调色15% | 金句+落款 |
