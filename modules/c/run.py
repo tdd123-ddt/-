@@ -21,7 +21,7 @@ from typing import Dict, List
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from modules.c.schema import Guidance
-from modules.c.generate import generate_guidance, personalization_check
+from modules.c.generate import generate_guidance, personalization_check, personalization_check_v2
 from modules.c import evaluate
 
 
@@ -48,6 +48,13 @@ def run(record_path: str, out_path: str = None, blind_eval: bool = False) -> Gui
     chk = personalization_check(record, g)
     print(f"[2/3] 反模板自检：引用用户具体事实 {chk['cited_count']}/{chk['total_facts']} "
           f"(个性化分数 {chk['personalization_score']})")
+
+    # 反模板自检 v2（标题相似度 + 句式多样性）
+    chk2 = personalization_check_v2(record, g)
+    print(f"      标题相似度 {chk2['title_similarity']}（越接近 0 越非模板，≥0.6 判模板化：{chk2['title_templated']}）")
+    print(f"      句式多样性 {chk2['sentence_diversity']}（祈使式开头 {chk2['imperative_openings']}/{chk2['total_sections']}，"
+          f"雷同开头：{chk2['uniform_opening']}）")
+    print(f"      综合非模板度 {chk2['anti_template_score']}（0~1，越高越个性化）")
 
     if out_path is None:
         out_path = os.path.join(os.path.dirname(os.path.abspath(record_path)), f"{pid}.guidance.json")
