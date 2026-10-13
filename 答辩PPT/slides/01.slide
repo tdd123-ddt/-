@@ -1,0 +1,30 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', position: 'relative', background: 'linear-gradient(135deg, #1A365D 0%, #2B6CB0 55%, #38B2AC 100%)', overflow: 'hidden' }}>
+    {/* 背景抽象数据流装饰 */}
+    <Box style={{ position: 'absolute', top: 40, right: 40, width: 460, height: 460, borderRadius: '50%', background: 'rgba(56,178,172,0.25)', opacity: 0.5 }} />
+    <Box style={{ position: 'absolute', bottom: 40, left: 40, width: 520, height: 520, borderRadius: '50%', background: 'rgba(43,108,176,0.3)', opacity: 0.5 }} />
+    <Box style={{ position: 'absolute', top: 180, right: 120, width: 280, height: 2, background: 'rgba(255,255,255,0.25)' }} />
+    <Box style={{ position: 'absolute', top: 320, right: 60, width: 380, height: 2, background: 'rgba(255,255,255,0.18)' }} />
+    <Box style={{ position: 'absolute', top: 260, right: 200, width: 10, height: 10, borderRadius: '50%', background: '#38B2AC' }} />
+    <Box style={{ position: 'absolute', top: 200, right: 340, width: 6, height: 6, borderRadius: '50%', background: '#FFFFFF', opacity: 0.6 }} />
+
+    {/* 主内容 */}
+    <Box style={{ position: 'relative', zIndex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%', padding: '0 80px' }}>
+      <Text style={{ fontSize: 20, color: '#7FD1CD', letterSpacing: 4, marginBottom: 24 }}>AI 编程赛 · 赛道四 课题 2</Text>
+      <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.25, marginBottom: 28 }}>
+        医护洞察与温度指引引擎
+      </Text>
+      <Text style={{ fontSize: 26, color: 'rgba(255,255,255,0.92)', lineHeight: 1.6, maxWidth: 720 }}>
+        把冷冰冰的理赔病历，转译成患者<Text style={{ color: '#7FD1CD', fontWeight: 'bold' }}>看得懂、用得上的温度指引</Text>
+      </Text>
+      <Box style={{ flexDirection: 'row', gap: 16, marginTop: 48 }}>
+        <Box style={{ padding: '12px 24px', borderRadius: 8, background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.25)' }}>
+          <Text style={{ fontSize: 18, color: '#FFFFFF' }}>结构化 · 痛点 · 指引 · 画像</Text>
+        </Box>
+        <Box style={{ padding: '12px 24px', borderRadius: 8, background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.25)' }}>
+          <Text style={{ fontSize: 18, color: '#FFFFFF' }}>四模块全链路 · 数据可溯源</Text>
+        </Box>
+      </Box>
+    </Box>
+  </Box>
+</Slide>
