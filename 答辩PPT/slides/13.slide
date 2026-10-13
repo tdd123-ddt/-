@@ -1,0 +1,11 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', position: 'relative', background: 'linear-gradient(135deg, #1A365D 0%, #2B6CB0 55%, #38B2AC 100%)', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <Box style={{ position: 'absolute', top: 60, right: 80, width: 300, height: 300, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+    <Box style={{ position: 'absolute', bottom: 60, left: 80, width: 240, height: 240, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
+    <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#FFFFFF', textAlign: 'center', lineHeight: 1.4, marginBottom: 32, maxWidth: 900 }}>
+      让每一份理赔病历，<br />都多一份有温度的答案
+    </Text>
+    <Text style={{ fontSize: 22, color: 'rgba(255,255,255,0.85)', marginBottom: 48 }}>结构化 · 洞察 · 指引 · 画像 —— 数据可溯源，温度有依据</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)' }}>谢谢观看 · 医护洞察与温度指引引擎</Text>
+  </Box>
+</Slide>
