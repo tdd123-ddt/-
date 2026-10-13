@@ -1,0 +1,27 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', background: '#F7FAFC', flexDirection: 'column', padding: '60px 80px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 48 }}>
+      <Text style={{ fontSize: 36, fontWeight: 'bold', color: '#1A365D' }}>目录</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 16 }}>CONTENTS</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 32, flex: 1 }}>
+      {[
+        { no: '01', title: '定位与架构', desc: '一句话定位与四模块全链路架构，以及 OCR + LLM + 规则的三层技术路线' },
+        { no: '02', title: '效果验证', desc: 'KR1 结构化硬指标、温度指引盲评、品质画像维度，全部用官方 70 案实测数字说话' },
+        { no: '03', title: '落地与合规', desc: '三条触达路径、反馈闭环，以及数据合规与 AI 原生度自证' },
+      ].map((item, idx) => (
+        <Box key={idx} style={{ flex: 1, borderRadius: 16, background: '#FFFFFF', padding: 40, flexDirection: 'column', boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid #E2E8F0' }}>
+          <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#38B2AC', lineHeight: 1 }}>{item.no}</Text>
+          <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#1A365D', marginTop: 20, marginBottom: 16 }}>{item.title}</Text>
+          <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.6 }}>{item.desc}</Text>
+        </Box>
+      ))}
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 28 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>02 / 12</Text>
+    </Box>
+  </Box>
+</Slide>
