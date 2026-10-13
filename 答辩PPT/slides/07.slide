@@ -1,0 +1,35 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', background: '#F7FAFC', flexDirection: 'column', padding: '40px 70px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 36 }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A365D' }}>KR1 结构化硬指标</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 14 }}>官方 70 案 · 两项硬指标达标</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 32, flex: 1 }}>
+      {[
+        { val: '0.933', label: '标量字段准确率', sub: '目标 ≥ 0.90 · 达标', color: '#2B6CB0', ok: true },
+        { val: '1.09%', label: '关键字段缺失率', sub: '目标 < 5% · 达标', color: '#38B2AC', ok: true },
+        { val: '0.849', label: '核心字段宏观 F1', sub: '目标 ≥ 0.90 · 差 0.05', color: '#1A365D', ok: false },
+      ].map((m, idx) => (
+        <Box key={idx} style={{ flex: 1, borderRadius: 16, background: '#FFFFFF', padding: 36, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+          <Text style={{ fontSize: 72, fontWeight: 'bold', color: m.color, lineHeight: 1 }}>{m.val}</Text>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A365D', marginTop: 20 }}>{m.label}</Text>
+          <Box style={{ marginTop: 14, padding: '8px 16px', borderRadius: 20, background: m.ok ? '#E6FFFA' : '#FFF5F5', border: m.ok ? '1px solid #B2F5EA' : '1px solid #FED7D7' }}>
+            <Text style={{ fontSize: 16, color: m.ok ? '#2C7A7B' : '#C53030' }}>{m.sub}</Text>
+          </Box>
+        </Box>
+      ))}
+    </Box>
+
+    <Box style={{ marginTop: 32, padding: '20px 28px', borderRadius: 12, background: '#EBF8FF', border: '1px solid #BEE3F8' }}>
+      <Text style={{ fontSize: 18, color: '#2C5282', lineHeight: 1.6 }}>
+        剩余 0.05 差距是真实的命名颗粒度问题（LLM 术式全称 vs 收费简称），已在 prompt 层优化（0.812 → 0.849），继续调参收益递减。
+      </Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>07 / 12</Text>
+    </Box>
+  </Box>
+</Slide>
