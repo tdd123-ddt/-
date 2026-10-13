@@ -1,0 +1,46 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', background: '#FFFFFF', flexDirection: 'column', padding: '40px 70px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 32 }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A365D' }}>品质画像</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 14 }}>纯数据驱动 · 可解释可溯源</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 28, flex: 1 }}>
+      {/* 左：维度 */}
+      <Box style={{ flex: 1.1, flexDirection: 'column', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A365D', marginBottom: 20 }}>7 个画像维度（目标 ≥ 5）</Text>
+        <Box style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
+          {['费用效率', '平均住院天数', '自费比例', '用药合理性', '治疗规范性', '再入院率', '患者满意度'].map((d, idx) => (
+            <Box key={idx} style={{ padding: '12px 20px', borderRadius: 24, background: '#EBF8FF', border: '1px solid #BEE3F8' }}>
+              <Text style={{ fontSize: 18, color: '#2B6CB0' }}>{d}</Text>
+            </Box>
+          ))}
+        </Box>
+        <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.6, marginTop: 24 }}>
+          覆盖 <Text style={{ fontWeight: 'bold', color: '#1A365D' }}>62 病种 × 79 机构</Text>，远超"≥3 病种 × ≥5 机构"要求。
+        </Text>
+      </Box>
+
+      {/* 右：可解释推荐 */}
+      <Box style={{ flex: 1, borderRadius: 16, background: '#F7FAFC', padding: 32, flexDirection: 'column', justifyContent: 'center', border: '1px solid #E2E8F0' }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A365D', marginBottom: 16 }}>每条推荐 2~6 条量化理由</Text>
+        <Box style={{ padding: '16px 20px', borderRadius: 10, background: '#FFFFFF', marginBottom: 12 }}>
+          <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.7 }}>
+            · 费用效率 2384.32 元，比该病种均值 2935.32 元 <Text style={{ fontWeight: 'bold', color: '#2C7A7B' }}>低 19%</Text>
+          </Text>
+        </Box>
+        <Box style={{ padding: '16px 20px', borderRadius: 10, background: '#FFFFFF' }}>
+          <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.7 }}>
+            · 自费比例 5.07%，比该病种均值 10.60% <Text style={{ fontWeight: 'bold', color: '#2C7A7B' }}>低 52%</Text>
+          </Text>
+        </Box>
+        <Text style={{ fontSize: 16, color: '#718096', marginTop: 16, fontStyle: 'italic' }}>每条理由都溯源到数据字段，不靠 LLM 自由发挥。</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 24 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>09 / 12</Text>
+    </Box>
+  </Box>
+</Slide>
