@@ -1,0 +1,411 @@
+{
+  "$defs": {
+    "Cost": {
+      "description": "费用构成。不同医保体系字段不同，统一映射到下面三个口径 + 分类明细。",
+      "properties": {
+        "total": {
+          "$ref": "#/$defs/Field"
+        },
+        "insurance_paid": {
+          "$ref": "#/$defs/Field"
+        },
+        "self_paid": {
+          "$ref": "#/$defs/Field"
+        },
+        "other_paid": {
+          "$ref": "#/$defs/Field"
+        },
+        "currency": {
+          "$ref": "#/$defs/Field"
+        },
+        "breakdown": {
+          "items": {
+            "$ref": "#/$defs/CostItem"
+          },
+          "title": "Breakdown",
+          "type": "array"
+        },
+        "insurance_class_summary": {
+          "items": {
+            "$ref": "#/$defs/CostItem"
+          },
+          "title": "Insurance Class Summary",
+          "type": "array"
+        }
+      },
+      "title": "Cost",
+      "type": "object"
+    },
+    "CostItem": {
+      "description": "费用构成中的一项（分类金额，或明细行）。",
+      "properties": {
+        "category": {
+          "$ref": "#/$defs/Field"
+        },
+        "amount": {
+          "$ref": "#/$defs/Field"
+        },
+        "insurance_class": {
+          "$ref": "#/$defs/Field"
+        },
+        "name": {
+          "$ref": "#/$defs/Field"
+        }
+      },
+      "title": "CostItem",
+      "type": "object"
+    },
+    "Diagnosis": {
+      "description": "一条诊断。type 覆盖主/次/入院/出院/初步/中医/西医等，用开放字符串避免写死。",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Field"
+        },
+        "type": {
+          "$ref": "#/$defs/Field"
+        },
+        "icd_code": {
+          "$ref": "#/$defs/Field"
+        },
+        "is_primary": {
+          "default": false,
+          "title": "Is Primary",
+          "type": "boolean"
+        }
+      },
+      "title": "Diagnosis",
+      "type": "object"
+    },
+    "Discharge": {
+      "description": "出院医嘱/出院带药/随访安排。",
+      "properties": {
+        "instructions": {
+          "$ref": "#/$defs/Field"
+        },
+        "follow_up": {
+          "$ref": "#/$defs/Field"
+        },
+        "discharge_medications": {
+          "items": {
+            "$ref": "#/$defs/Medication"
+          },
+          "title": "Discharge Medications",
+          "type": "array"
+        }
+      },
+      "title": "Discharge",
+      "type": "object"
+    },
+    "DocumentInfo": {
+      "description": "来源文档元信息（识别出的文档类型）。",
+      "properties": {
+        "file": {
+          "default": "",
+          "title": "File",
+          "type": "string"
+        },
+        "doc_type": {
+          "$ref": "#/$defs/Field"
+        },
+        "pages": {
+          "default": 1,
+          "title": "Pages",
+          "type": "integer"
+        }
+      },
+      "title": "DocumentInfo",
+      "type": "object"
+    },
+    "Encounter": {
+      "description": "一次就诊（住院/门诊/急诊）的元信息。",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/Field"
+        },
+        "hospital": {
+          "$ref": "#/$defs/Field"
+        },
+        "department": {
+          "$ref": "#/$defs/Field"
+        },
+        "doctor": {
+          "$ref": "#/$defs/Field"
+        },
+        "admission_time": {
+          "$ref": "#/$defs/Field"
+        },
+        "discharge_time": {
+          "$ref": "#/$defs/Field"
+        },
+        "length_of_stay_days": {
+          "$ref": "#/$defs/Field"
+        },
+        "visit_time": {
+          "$ref": "#/$defs/Field"
+        },
+        "insurance_type": {
+          "$ref": "#/$defs/Field"
+        }
+      },
+      "title": "Encounter",
+      "type": "object"
+    },
+    "Evidence": {
+      "description": "一处证据：来源文档 + 原文片段（脱敏后可展示）。",
+      "properties": {
+        "source": {
+          "default": "",
+          "title": "Source",
+          "type": "string"
+        },
+        "snippet": {
+          "default": "",
+          "title": "Snippet",
+          "type": "string"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        }
+      },
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Field": {
+      "description": "带置信度与证据的字段（所有叶子字段统一用此包装）。",
+      "properties": {
+        "value": {
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "missing": {
+          "default": false,
+          "title": "Missing",
+          "type": "boolean"
+        },
+        "method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Method"
+        }
+      },
+      "title": "Field",
+      "type": "object"
+    },
+    "LabFinding": {
+      "description": "一项检查/检验结论。",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Field"
+        },
+        "result": {
+          "$ref": "#/$defs/Field"
+        },
+        "date": {
+          "$ref": "#/$defs/Field"
+        }
+      },
+      "title": "LabFinding",
+      "type": "object"
+    },
+    "Medication": {
+      "description": "一条用药。兼容西药/中成药/中药饮片。",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Field"
+        },
+        "category": {
+          "$ref": "#/$defs/Field"
+        },
+        "spec": {
+          "$ref": "#/$defs/Field"
+        },
+        "dose": {
+          "$ref": "#/$defs/Field"
+        },
+        "frequency": {
+          "$ref": "#/$defs/Field"
+        },
+        "route": {
+          "$ref": "#/$defs/Field"
+        },
+        "course": {
+          "$ref": "#/$defs/Field"
+        },
+        "purpose": {
+          "$ref": "#/$defs/Field"
+        }
+      },
+      "title": "Medication",
+      "type": "object"
+    },
+    "Patient": {
+      "description": "患者基本信息（原型保留，展示前必须二次脱敏）。",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Field"
+        },
+        "gender": {
+          "$ref": "#/$defs/Field"
+        },
+        "age": {
+          "$ref": "#/$defs/Field"
+        },
+        "birth_date": {
+          "$ref": "#/$defs/Field"
+        },
+        "patient_id": {
+          "$ref": "#/$defs/Field"
+        },
+        "phone": {
+          "$ref": "#/$defs/Field"
+        },
+        "id_number": {
+          "$ref": "#/$defs/Field"
+        }
+      },
+      "title": "Patient",
+      "type": "object"
+    },
+    "Procedure": {
+      "description": "一条手术/操作。",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Field"
+        },
+        "date": {
+          "$ref": "#/$defs/Field"
+        },
+        "anesthesia": {
+          "$ref": "#/$defs/Field"
+        },
+        "code": {
+          "$ref": "#/$defs/Field"
+        },
+        "body_part": {
+          "$ref": "#/$defs/Field"
+        }
+      },
+      "title": "Procedure",
+      "type": "object"
+    },
+    "TimelineEvent": {
+      "description": "医疗事件重建：一个带时间的事件。",
+      "properties": {
+        "date": {
+          "$ref": "#/$defs/Field"
+        },
+        "type": {
+          "$ref": "#/$defs/Field"
+        },
+        "description": {
+          "$ref": "#/$defs/Field"
+        },
+        "source": {
+          "$ref": "#/$defs/Field"
+        }
+      },
+      "title": "TimelineEvent",
+      "type": "object"
+    }
+  },
+  "description": "一份病历结构化后的完整 JSON。",
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "patient_id": {
+      "default": "",
+      "title": "Patient Id",
+      "type": "string"
+    },
+    "patient": {
+      "$ref": "#/$defs/Patient"
+    },
+    "encounter": {
+      "$ref": "#/$defs/Encounter"
+    },
+    "diagnoses": {
+      "items": {
+        "$ref": "#/$defs/Diagnosis"
+      },
+      "title": "Diagnoses",
+      "type": "array"
+    },
+    "procedures": {
+      "items": {
+        "$ref": "#/$defs/Procedure"
+      },
+      "title": "Procedures",
+      "type": "array"
+    },
+    "medications": {
+      "items": {
+        "$ref": "#/$defs/Medication"
+      },
+      "title": "Medications",
+      "type": "array"
+    },
+    "costs": {
+      "$ref": "#/$defs/Cost"
+    },
+    "labs_imaging": {
+      "items": {
+        "$ref": "#/$defs/LabFinding"
+      },
+      "title": "Labs Imaging",
+      "type": "array"
+    },
+    "discharge": {
+      "$ref": "#/$defs/Discharge"
+    },
+    "timeline": {
+      "items": {
+        "$ref": "#/$defs/TimelineEvent"
+      },
+      "title": "Timeline",
+      "type": "array"
+    },
+    "documents": {
+      "items": {
+        "$ref": "#/$defs/DocumentInfo"
+      },
+      "title": "Documents",
+      "type": "array"
+    },
+    "extra": {
+      "$ref": "#/$defs/Field"
+    }
+  },
+  "title": "StructuredRecord",
+  "type": "object"
+}
