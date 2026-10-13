@@ -134,7 +134,7 @@ if "result" in st.session_state:
     r = st.session_state["result"]
     st.success(f"分析完成（病人 {r['pid']}）")
 
-    tabs = st.tabs(["📋 结构化结果", "⚠️ 就医痛点", "💌 温度指引", "🏥 品质画像"])
+    tabs = st.tabs(["📋 结构化结果", "⚠️ 就医痛点", "💌 温度指引", "🏥 品质画像", "💡 关怀增强"])
     with tabs[0]:
         ui.render_record(r["record"], st)
     with tabs[1]:
@@ -143,3 +143,5 @@ if "result" in st.session_state:
         ui.render_guidance(r["guidance"], st)
     with tabs[3]:
         ui.render_quality(st, record=r["record"])
+    with tabs[4]:
+        ui.render_enhance(st, enhance=r.get("enhance"))
