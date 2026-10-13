@@ -230,6 +230,64 @@ def exp_lack_followup(record: Dict) -> Optional[PainPoint]:
 
 
 # ---------------------------------------------------------------------------
+# 理赔体验类（2026-10 扩展：对应命题"临床/费用/体验"里的"体验"，聚焦理赔流程体验）
+# ---------------------------------------------------------------------------
+
+def claim_pay_advance_need(record: Dict) -> Optional[PainPoint]:
+    """垫付需求：大额自费或高总费用，患者可能有资金压力。"""
+    costs = record.get("costs", {})
+    total = num(costs.get("total")) or 0
+    self_pay = _self_pay_amount(costs)
+    if total < THRESHOLDS["min_total_for_cost"]:
+        return None
+    ratio = (self_pay / total) if (self_pay and total) else 0
+    # 触发：自费 ≥3000 元，或自费占比 ≥40%
+    if (self_pay and self_pay >= 3000) or ratio >= 0.40:
+        sev = "高" if ratio >= 0.60 else "中"
+        return _pp("claim_pay_advance_need", sev, min(1.0, ratio),
+                   f"自费 {self_pay:.0f} 元（占比 {ratio:.0%}），可能存在垫付/先行赔付需求",
+                   [Evidence(source="costs.self_paid", snippet=f"自费 {self_pay:.0f}，占比 {ratio:.0%}")])
+    return None
+
+
+def claim_deductible_opaque(record: Dict) -> Optional[PainPoint]:
+    """免赔额/报销口径不透明：自费比例高时，报销预期不清晰。"""
+    costs = record.get("costs", {})
+    total = num(costs.get("total")) or 0
+    self_pay = _self_pay_amount(costs)
+    if total < THRESHOLDS["min_total_for_cost"] or not self_pay:
+        return None
+    ratio = self_pay / total
+    if ratio >= 0.30:
+        return _pp("claim_deductible_opaque", "中", 0.6,
+                   f"自费占比 {ratio:.0%}，患者对'能报多少/免赔额'预期可能不清晰，建议主动告知报销口径",
+                   [Evidence(source="costs.self_paid", snippet=f"自费占比 {ratio:.0%}")])
+    return None
+
+
+def claim_material_burden(record: Dict) -> Optional[PainPoint]:
+    """材料补件负担：住院患者需保留大量理赔材料。"""
+    enc_type = txt(record.get("encounter", {}).get("type", {}))
+    los = num(record.get("encounter", {}).get("length_of_stay_days", {})) or 0
+    if "住院" in enc_type or los >= 1:
+        return _pp("claim_material_burden", "低", 0.5,
+                   "住院患者理赔需保留诊断证明/费用清单/发票等材料，缺件会延误理赔，建议提前告知清单",
+                   [Evidence(source="encounter.type", snippet=f"住院 {los:.0f} 天")])
+    return None
+
+
+def claim_progress_anxiety(record: Dict) -> Optional[PainPoint]:
+    """理赔进度焦虑：高金额案件患者对进度/到账时间敏感。"""
+    costs = record.get("costs", {})
+    total = num(costs.get("total")) or 0
+    if total >= 20000:
+        return _pp("claim_progress_anxiety", "中", 0.6,
+                   f"总费用 {total:.0f} 元（高金额），患者对理赔进度/到账时间更敏感，建议主动同步进度",
+                   [Evidence(source="costs.total", snippet=f"总费用 {total:.0f}")])
+    return None
+
+
+# ---------------------------------------------------------------------------
 # 汇总入口
 # ---------------------------------------------------------------------------
 
@@ -251,6 +309,19 @@ def detect_rules(record: Dict) -> List[PainPoint]:
     if p:
         out.append(p)
     p = exp_lack_followup(record)
+    if p:
+        out.append(p)
+    # 理赔体验类
+    p = claim_pay_advance_need(record)
+    if p:
+        out.append(p)
+    p = claim_deductible_opaque(record)
+    if p:
+        out.append(p)
+    p = claim_material_burden(record)
+    if p:
+        out.append(p)
+    p = claim_progress_anxiety(record)
     if p:
         out.append(p)
     return out
