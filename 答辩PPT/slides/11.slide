@@ -1,0 +1,49 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', background: '#FFFFFF', flexDirection: 'column', padding: '40px 70px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 32 }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A365D' }}>触达闭环与合规</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 14 }}>从技术能力到实际价值</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 28, flex: 1 }}>
+      {/* 左：触达 + 闭环 */}
+      <Box style={{ flex: 1.1, flexDirection: 'column', gap: 16, justifyContent: 'center' }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A365D', marginBottom: 4 }}>三条触达路径</Text>
+        {[
+          { t: '结案即时触达', d: '理赔结案通知里附带"就医复盘指引"' },
+          { t: '主动关怀外呼/企微', d: '针对高风险痛点患者主动回访' },
+          { t: 'App/小程序自助查看', d: '长期健康档案沉淀' },
+        ].map((item, idx) => (
+          <Box key={idx} style={{ flexDirection: 'row', alignItems: 'center', padding: '14px 20px', borderRadius: 10, background: '#F7FAFC', border: '1px solid #E2E8F0' }}>
+            <Box style={{ width: 28, height: 28, borderRadius: '50%', background: '#2B6CB0', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+              <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#FFFFFF' }}>{idx + 1}</Text>
+            </Box>
+            <Box>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1A365D' }}>{item.t}</Text>
+              <Text style={{ fontSize: 16, color: '#718096' }}>{item.d}</Text>
+            </Box>
+          </Box>
+        ))}
+        <Text style={{ fontSize: 16, color: '#2C7A7B', marginTop: 4, fontStyle: 'italic' }}>
+          反馈闭环：采纳率 → 标注 → prompt/规则迭代 → 再输出
+        </Text>
+      </Box>
+
+      {/* 右：合规 */}
+      <Box style={{ flex: 0.9, borderRadius: 16, background: 'linear-gradient(135deg, #1A365D 0%, #2B6CB0 100%)', padding: 32, flexDirection: 'column', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#7FD1CD', marginBottom: 20 }}>5 项合规设计</Text>
+        {['数据最小化', '展示前二次脱敏', '免责声明', '本地推理优先', '可审计（置信度+证据）'].map((c, idx) => (
+          <Box key={idx} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
+            <Text style={{ fontSize: 16, color: '#38B2AC', marginRight: 12 }}>✓</Text>
+            <Text style={{ fontSize: 18, color: '#FFFFFF' }}>{c}</Text>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 24 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>11 / 12</Text>
+    </Box>
+  </Box>
+</Slide>
