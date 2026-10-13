@@ -1,11 +1,58 @@
 <Slide>
-  <Box style={{ width: '1280px', height: '720px', position: 'relative', background: 'linear-gradient(135deg, #1A365D 0%, #2B6CB0 55%, #38B2AC 100%)', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-    <Box style={{ position: 'absolute', top: 60, right: 80, width: 300, height: 300, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
-    <Box style={{ position: 'absolute', bottom: 60, left: 80, width: 240, height: 240, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
-    <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#FFFFFF', textAlign: 'center', lineHeight: 1.4, marginBottom: 32, maxWidth: 900 }}>
-      让每一份理赔病历，<br />都多一份有温度的答案
-    </Text>
-    <Text style={{ fontSize: 22, color: 'rgba(255,255,255,0.85)', marginBottom: 48 }}>结构化 · 洞察 · 指引 · 画像 —— 数据可溯源，温度有依据</Text>
-    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)' }}>谢谢观看 · 医护洞察与温度指引引擎</Text>
+  <Box style={{ width: '1280px', height: '720px', background: '#FFFFFF', flexDirection: 'column', padding: '40px 70px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 28 }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A365D' }}>理赔关怀增强</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 14 }}>把 1.2 万条真实客服对话，变成懂理赔的关怀底座</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 28, flex: 1 }}>
+      {/* 左：五项能力 */}
+      <Box style={{ flex: 1.15, flexDirection: 'column', gap: 12, justifyContent: 'center' }}>
+        {[
+          { t: '真实问答库（RAG 底座）', d: '12594 条客服会话 → 38846 个问答对，10 主题倒排索引' },
+          { t: '预判式 FAQ', d: '病历特征 → 预判最可能问的 3 题，答案从真实会话检索' },
+          { t: '理赔体验痛点', d: '痛点分类 9 → 13 类，新增垫付/免赔额/进度焦虑/材料补件' },
+          { t: '触达 + 增值服务', d: '企微/呼内渠道优选，病种 → 特药/质子/绿通/护工/陪诊' },
+          { t: '闭环 KPI + 异常监控', d: '咨询量变化率 + 需求漂移预警，关怀效果可度量' },
+        ].map((item, idx) => (
+          <Box key={idx} style={{ flexDirection: 'row', alignItems: 'center', padding: '12px 18px', borderRadius: 10, background: '#F7FAFC', border: '1px solid #E2E8F0' }}>
+            <Box style={{ width: 26, height: 26, borderRadius: '50%', background: '#2B6CB0', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+              <Text style={{ fontSize: 13, fontWeight: 'bold', color: '#FFFFFF' }}>{idx + 1}</Text>
+            </Box>
+            <Box style={{ flex: 1 }}>
+              <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A365D' }}>{item.t}</Text>
+              <Text style={{ fontSize: 14, color: '#718096', lineHeight: 1.5 }}>{item.d}</Text>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+
+      {/* 右：关键数字锚点 */}
+      <Box style={{ flex: 0.85, borderRadius: 16, background: 'linear-gradient(135deg, #1A365D 0%, #2B6CB0 100%)', padding: 28, flexDirection: 'column', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#7FD1CD', marginBottom: 20 }}>真实病例验证（肺癌 · 自费 33%）</Text>
+        {[
+          { n: '4', u: '类理赔体验痛点', d: '垫付 / 免赔额 / 进度焦虑 / 材料补件' },
+          { n: '3', u: '条预判 FAQ', d: '均带真实客服问答依据' },
+          { n: '呼入', u: '触达优先', d: '高自费走电话，普通走企微' },
+          { n: '2', u: '组增值服务', d: '特药/质子/绿通 + 护工/陪诊' },
+        ].map((it, idx) => (
+          <Box key={idx} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
+            <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#38B2AC', width: 70 }}>{it.n}</Text>
+            <Box style={{ flex: 1 }}>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>{it.u}</Text>
+              <Text style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>{it.d}</Text>
+            </Box>
+          </Box>
+        ))}
+        <Text style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginTop: 8, fontStyle: 'italic' }}>
+          端到端跑通：触发 → a 结构化 → b 痛点 → c 指引 → d 画像 → e 关怀增强
+        </Text>
+      </Box>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 22 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>12 / 13</Text>
+    </Box>
   </Box>
 </Slide>
