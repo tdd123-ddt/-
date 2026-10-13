@@ -1,0 +1,49 @@
+<Slide>
+  <Box style={{ width: '1280px', height: '720px', background: '#FFFFFF', flexDirection: 'column', padding: '40px 70px' }}>
+    <Box style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 32 }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A365D' }}>四模块全链路</Text>
+      <Text style={{ fontSize: 18, color: '#718096', marginLeft: 14 }}>不止结构化，是理赔后的全流程增值</Text>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', gap: 28, flex: 1 }}>
+      {/* 左侧流程主视觉 */}
+      <Box style={{ flex: 1.1, borderRadius: 16, background: '#F7FAFC', padding: 32, flexDirection: 'column', justifyContent: 'center', border: '1px solid #E2E8F0' }}>
+        <Text style={{ fontSize: 18, color: '#718096', marginBottom: 20 }}>数据流</Text>
+        {[
+          { no: 'a', name: '病历结构化', en: 'OCR + LLM + 规则', color: '#2B6CB0' },
+          { no: 'b', name: '就医痛点', en: '规则 + LLM 语义', color: '#2B6CB0' },
+          { no: 'c', name: '温度指引', en: '个性化信笺', color: '#38B2AC' },
+          { no: 'd', name: '品质画像', en: '聚合 + 推荐', color: '#38B2AC' },
+        ].map((m, idx) => (
+          <Box key={idx} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: idx === 3 ? 0 : 20 }}>
+            <Box style={{ width: 44, height: 44, borderRadius: '50%', background: m.color, alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>{m.no}</Text>
+            </Box>
+            <Box style={{ flex: 1 }}>
+              <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A365D' }}>{m.name}</Text>
+              <Text style={{ fontSize: 16, color: '#718096' }}>{m.en}</Text>
+            </Box>
+            {idx < 3 && <Text style={{ fontSize: 24, color: '#CBD5E0', marginLeft: 8 }}>↓</Text>}
+          </Box>
+        ))}
+      </Box>
+
+      {/* 右侧说明 */}
+      <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', gap: 20 }}>
+        <Box style={{ padding: 24, borderRadius: 12, background: '#EBF8FF', border: '1px solid #BEE3F8' }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#2B6CB0', marginBottom: 10 }}>核赔之外的增值</Text>
+          <Text style={{ fontSize: 18, color: '#2C5282', lineHeight: 1.6 }}>传统理赔里，病历只用于核赔，患者拿到的是"已结案"。本引擎在理赔完成后，把病历转成一份"人话版"就医复盘与后续关怀。</Text>
+        </Box>
+        <Box style={{ padding: 24, borderRadius: 12, background: '#E6FFFA', border: '1px solid #B2F5EA' }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#2C7A7B', marginBottom: 10 }}>四模块职责清晰</Text>
+          <Text style={{ fontSize: 18, color: '#234E52', lineHeight: 1.6 }}>a 结构化 → b 洞察痛点 → c 生成指引 → d 沉淀画像，层层递进，每个模块的输出都带证据溯源。</Text>
+        </Box>
+      </Box>
+    </Box>
+
+    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 24 }}>
+      <Text style={{ fontSize: 14, color: '#718096' }}>医护洞察与温度指引引擎</Text>
+      <Text style={{ fontSize: 14, color: '#718096', marginLeft: 'auto' }}>04 / 12</Text>
+    </Box>
+  </Box>
+</Slide>
