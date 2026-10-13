@@ -217,3 +217,53 @@ def render_quality(st, record=None):
                 for reason in r["reasons"]:
                     st.markdown(f"- {_esc(reason)}")
                 _render_hospital_search(st, r["hospital"], r["disease"], prefix="lib")
+
+
+def render_enhance(st, enhance=None):
+    """渲染模块 e 理赔关怀增强（预判式 FAQ + 触达 + 增值服务 + 闭环 KPI）。"""
+    if not enhance:
+        st.info("暂无关怀增强结果。")
+        return
+
+    # —— 1. 预判式 FAQ ——
+    st.subheader("💡 预判式 FAQ（您可能还想了解）")
+    faqs = enhance.get("predictive_faqs", [])
+    if not faqs:
+        st.caption("（根据病历特征，暂未触发预判问题）")
+    for f in faqs:
+        badge = "✅ 有据可依" if f.get("grounded") else "⚠️ 需人工确认"
+        st.markdown(f"**Q：{_esc(f['question'])}**  `{badge}`")
+        st.markdown(f"<div style='margin-left:16px;color:#555'>A：{_esc(f['answer'])}</div>",
+                    unsafe_allow_html=True)
+        st.caption(f"· 为什么问这个：{_esc(f['why'])}")
+        st.markdown("")
+
+    # —— 2. 触达渠道 ——
+    st.subheader("📣 触达渠道建议")
+    ch = enhance.get("channel", {})
+    if ch:
+        st.markdown(f"**推荐渠道**：{_esc(ch.get('channel', ''))}")
+        st.caption(f"理由：{_esc(ch.get('reason', ''))}")
+        dist = ch.get("dist", {})
+        if dist:
+            st.caption("服务类型分布：企微 65.6% / 呼入 33.6% / 在线 0.8%（来自 1.2 万条真实会话统计）")
+
+    # —— 3. 增值服务 ——
+    st.subheader("🎁 增值服务推荐")
+    svcs = enhance.get("value_added_services", [])
+    if not svcs:
+        st.caption("（根据病种暂未匹配到增值服务）")
+    for s in svcs:
+        st.markdown(f"- 匹配「{_esc(s['match'])}」→ **{'、'.join(s['services'])}**")
+
+    # —— 4. 闭环 KPI ——
+    st.subheader("📈 闭环 KPI（可度量验证）")
+    kpi = enhance.get("closed_loop_kpi", {})
+    if kpi:
+        st.markdown(f"- **指标**：{_esc(kpi.get('metric', ''))}")
+        st.markdown(f"- **公式**：`{_esc(kpi.get('formula', ''))}`")
+        st.markdown(f"- **目标**：{_esc(kpi.get('target', ''))}")
+        topics = kpi.get("topics_tracked", [])
+        if topics:
+            st.caption(f"追踪主题：{'、'.join(topics)}")
+
