@@ -114,7 +114,7 @@ ANTHROPIC_MODEL=deepseek-chat
 ## 九、代码结构（技术架构）
 
 ```
-app.py                   # Streamlit 入口（上传 → 分析 → 四页签展示）
+app.py                   # Streamlit 入口（上传/触发 → 分析 → 五页签展示）
 web/
   runner.py              # 全链路编排：a(结构化) → b(痛点) → c(温度指引)，LLM 失败自动降级规则模式
   ui.py                  # 结果渲染
