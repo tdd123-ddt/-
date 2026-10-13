@@ -12,6 +12,7 @@ from typing import List, Dict, Any, Callable
 from modules.a.run import run as run_a
 from modules.b.run import run as run_b
 from modules.c.run import run as run_c
+from modules.e.service import run as run_e
 
 
 def _write_uploads(uploaded_files, tmp_dir: str) -> None:
@@ -72,7 +73,16 @@ def run_pipeline(uploaded_files, pid: str = "",
     else:
         guidance = _fallback_guidance(pid, record)
 
-    return {"pid": pid, "record": record, "pain_points": pain_points, "guidance": guidance}
+    # —— 模块 e：理赔关怀增强（预判 FAQ + 触达 + 增值服务 + 闭环 KPI）——
+    progress("④ 理赔关怀增强（预判式 FAQ / 触达 / 增值服务）…")
+    try:
+        enhance = run_e(record)
+    except Exception as e:
+        progress(f"⚠ 关怀增强异常，继续：{type(e).__name__}: {str(e)[:120]}")
+        enhance = {"predictive_faqs": [], "channel": {}, "value_added_services": [], "closed_loop_kpi": {}}
+
+    return {"pid": pid, "record": record, "pain_points": pain_points,
+            "guidance": guidance, "enhance": enhance}
 
 
 def run_from_record(record_path: str,
@@ -106,7 +116,16 @@ def run_from_record(record_path: str,
     g_path = os.path.join(out_dir, f"{pid}.guidance.json")
     guidance = json.load(open(g_path, encoding="utf-8")) if os.path.exists(g_path) else _fallback_guidance(pid, record)
 
-    return {"pid": pid, "record": record, "pain_points": pain_points, "guidance": guidance}
+    # —— 模块 e：理赔关怀增强 ——
+    progress("④ 理赔关怀增强（预判式 FAQ / 触达 / 增值服务）…")
+    try:
+        enhance = run_e(record)
+    except Exception as e:
+        progress(f"⚠ 关怀增强异常，继续：{type(e).__name__}: {str(e)[:120]}")
+        enhance = {"predictive_faqs": [], "channel": {}, "value_added_services": [], "closed_loop_kpi": {}}
+
+    return {"pid": pid, "record": record, "pain_points": pain_points,
+            "guidance": guidance, "enhance": enhance}
 
 
 def _fallback_guidance(pid: str, record: Dict) -> Dict:
