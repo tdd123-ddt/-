@@ -17,6 +17,9 @@ output/kr1_final/
 output/*.json
 output/*.md
 
+# module e 问答库（12MB 大数据，可由 python -m modules.e.qa_base 一键重建）
+output/qa/
+
 # 本机临时生成物
 *.guidance.json
 *.guidance.md
