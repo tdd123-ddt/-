@@ -59,9 +59,26 @@ TAXONOMY = {
         "name": "随访/复诊安排缺失", "category": "体验", "method": "rule",
         "desc": "缺少明确的复诊时间、随访安排",
     },
+    # —— 理赔体验类（2026-10 扩展：从 1.2 万条真实客服对话洞察的"保险体验痛点"）——
+    "claim_pay_advance_need": {
+        "name": "垫付需求", "category": "理赔体验", "method": "rule",
+        "desc": "大额自费/高总费用患者可能有资金压力，需要医疗垫付/先行赔付服务",
+    },
+    "claim_deductible_opaque": {
+        "name": "免赔额/报销口径不透明", "category": "理赔体验", "method": "rule",
+        "desc": "自费比例高时，患者对「能不能报、报多少、免赔额多少」的预期不清晰，易产生理赔争议",
+    },
+    "claim_material_burden": {
+        "name": "材料补件负担", "category": "理赔体验", "method": "rule",
+        "desc": "住院患者需保留大量理赔材料（诊断证明/费用清单/发票等），材料不全会延误理赔",
+    },
+    "claim_progress_anxiety": {
+        "name": "理赔进度焦虑", "category": "理赔体验", "method": "rule",
+        "desc": "高金额案件患者对理赔进度/到账时间敏感，缺乏进度透明会加剧焦虑",
+    },
 }
 
-CATEGORIES = ["临床", "费用", "体验"]
+CATEGORIES = ["临床", "费用", "体验", "理赔体验"]
 SEVERITIES = ["高", "中", "低"]
 
 
